@@ -11,13 +11,14 @@ stats.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock*
+package-lock.json*
 
 .env
 .env.development.local
 .env.test.local
 .env.production.local
-yarn.lock
-package-lock.json
+
 # boilerplate internals
 generated-cra-app
 .cra-template-rb
