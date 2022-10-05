@@ -5,7 +5,7 @@ import { Store } from '@reduxjs/toolkit';
 import { ThemeProvider } from '../ThemeProvider';
 import { configureAppStore } from 'store/configureStore';
 import { useTheme } from 'styled-components';
-import { selectTheme } from '../slice/selectors';
+import { selectTheme } from 'slices/theme/selectors';
 
 const renderThemeProvider = (store: Store, Child: React.FunctionComponent) =>
   render(

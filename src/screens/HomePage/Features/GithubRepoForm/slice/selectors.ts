@@ -25,3 +25,8 @@ export const selectRepos = createSelector(
   [selectDomain],
   githubRepoFormState => githubRepoFormState.repositories,
 );
+
+export const selectUsers = createSelector(
+  [selectDomain],
+  githubRepoFormState => githubRepoFormState.users,
+);

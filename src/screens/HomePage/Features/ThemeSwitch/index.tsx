@@ -2,20 +2,17 @@ import * as React from 'react';
 import { FormLabel } from 'components/FormLabel';
 import { Radio } from 'components/Radio';
 import styled from 'styled-components/macro';
-import { themeActions } from 'styles/theme/slice';
-import { useDispatch, useSelector } from 'react-redux';
 import { saveTheme } from 'styles/theme/utils';
-import { ThemeKeyType } from 'styles/theme/slice/types';
-import { selectThemeKey } from 'styles/theme/slice/selectors';
+import { useThemeSlice } from 'slices';
+import { ThemeKeyType } from 'slices/theme/types';
 
 export function ThemeSwitch() {
-  const theme = useSelector(selectThemeKey);
-  const dispatch = useDispatch();
+  const { changeTheme, themeKey } = useThemeSlice();
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value as ThemeKeyType;
     saveTheme(value);
-    dispatch(themeActions.changeTheme(value));
+    changeTheme(value);
   };
 
   return (
@@ -29,7 +26,7 @@ export function ThemeSwitch() {
           name="theme"
           onChange={handleThemeChange}
           value="system"
-          isSelected={theme === 'system'}
+          isSelected={themeKey === 'system'}
         />
         <Radio
           id="light"
@@ -38,7 +35,7 @@ export function ThemeSwitch() {
           name="theme"
           onChange={handleThemeChange}
           value="light"
-          isSelected={theme === 'light'}
+          isSelected={themeKey === 'light'}
         />
         <Radio
           id="dark"
@@ -47,7 +44,7 @@ export function ThemeSwitch() {
           name="theme"
           onChange={handleThemeChange}
           value="dark"
-          isSelected={theme === 'dark'}
+          isSelected={themeKey === 'dark'}
         />
       </Themes>
     </Wrapper>

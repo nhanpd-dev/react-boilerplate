@@ -4,6 +4,7 @@ import { RepoItem } from './RepoItem';
 import { LoadingIndicator } from 'components/LoadingIndicator';
 import { RepoErrorType } from './slice/types';
 import { useGithubRepoFormSlice } from './slice';
+import { useUserSlice } from 'slices';
 import {
   List,
   FormGroup,
@@ -17,6 +18,8 @@ export const GithubRepoForm: React.FC = () => {
   const { loadRepos, changeUsername, username, repos, isLoading, error } =
     useGithubRepoFormSlice();
 
+  const { loadUsers, users } = useUserSlice();
+  console.log('======> update users: ', users);
   const onChangeUsername = (evt: React.ChangeEvent<HTMLInputElement>) => {
     changeUsername(evt.currentTarget.value);
     loadRepos();
@@ -31,6 +34,7 @@ export const GithubRepoForm: React.FC = () => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) {
       loadRepos();
+      loadUsers();
     }
   });
 

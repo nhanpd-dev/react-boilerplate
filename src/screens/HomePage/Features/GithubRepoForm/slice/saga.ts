@@ -4,6 +4,7 @@ import { selectUsername } from './selectors';
 import { githubRepoFormActions as actions } from '.';
 import { Repo } from 'types/Repo';
 import { RepoErrorType } from './types';
+import { UserModel } from 'models';
 
 /**
  * Github repos request/response handler
@@ -19,9 +20,7 @@ export function* getRepos() {
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
   try {
-    // Call our request helper (see 'utils/request')
     const repos: Repo[] = yield call(request, requestURL);
-    console.log('=====>Repo ', repos);
     if (repos?.length > 0) {
       yield put(actions.reposLoaded(repos));
     } else {
@@ -38,6 +37,17 @@ export function* getRepos() {
   }
 }
 
+export function* getUsers() {
+  const requestURL = `http://localhost:3001/users`;
+
+  try {
+    const users: UserModel[] = yield call(request, requestURL);
+    console.log('====>users ', users);
+  } catch (err: any) {
+    console.log('=====> errors: ', err);
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -47,4 +57,5 @@ export function* githubRepoFormSaga() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(actions.loadRepos.type, getRepos);
+  yield takeLatest(actions.loadUsers.type, getUsers);
 }

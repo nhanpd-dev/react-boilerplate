@@ -11,13 +11,16 @@ import {
   selectRepos,
   selectLoading,
   selectError,
+  selectUsers,
 } from './selectors';
+import { UserModel } from 'models';
 
 export const initialState: GithubRepoFormState = {
   username: 'react-boilerplate',
   repositories: [],
   loading: false,
   error: null,
+  users: [],
 };
 
 const slice = createSlice({
@@ -41,6 +44,17 @@ const slice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    loadUsers: state => {
+      state.loading = true;
+      state.error = null;
+      state.users = [];
+    },
+    usersLoaded: (state, action: PayloadAction<UserModel[]>) => {
+      state.loading = false;
+      state.loading = true;
+      state.error = null;
+      state.users = action.payload;
+    },
   },
 });
 
@@ -55,11 +69,22 @@ export const useGithubRepoFormSlice = () => {
 
   const changeUsername = (payload: string) =>
     dispatch(actions.changeUsername(payload));
+  const loadUsers = () => dispatch(actions.loadUsers());
 
   const username = useSelector(selectUsername);
   const repos = useSelector(selectRepos);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const users = useSelector(selectUsers);
 
-  return { loadRepos, changeUsername, username, repos, isLoading, error };
+  return {
+    loadRepos,
+    changeUsername,
+    loadUsers,
+    username,
+    repos,
+    isLoading,
+    error,
+    users,
+  };
 };

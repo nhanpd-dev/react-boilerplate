@@ -1,12 +1,9 @@
-import { Repo } from 'types/Repo';
 import { UserModel } from 'models';
 
 /* --- STATE --- */
-export interface GithubRepoFormState {
-  username: string;
+export interface UsersState {
   loading: boolean;
   error?: RepoErrorType | null;
-  repositories: Repo[];
   users: UserModel[];
 }
 
@@ -22,4 +19,4 @@ export enum RepoErrorType {
   If you want to use 'ContainerState' keyword everywhere in your feature folder, 
   instead of the 'HomePageState' keyword.
 */
-export type ContainerState = GithubRepoFormState;
+export type ContainerState = UsersState;

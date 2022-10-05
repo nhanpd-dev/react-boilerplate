@@ -1,7 +1,7 @@
-import * as slice from '..';
-import { ThemeState, ThemeKeyType } from '../types';
+import * as slice from 'slices/theme';
+import { ThemeState, ThemeKeyType } from 'slices/theme/types';
 import { RootState } from 'types';
-import { themes } from '../../themes';
+import { themes } from 'styles';
 import { DefaultTheme } from 'styled-components';
 import { selectTheme, selectThemeKey } from '../selectors';
 

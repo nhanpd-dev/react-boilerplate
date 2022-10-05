@@ -21,6 +21,7 @@
     "@types/webpack": "5.28.0",
     "@types/webpack-env": "1.16.3",
     "chalk": "4.1.2",
+    "concurrently": "7.4.0",
     "cross-env": "7.0.3",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
@@ -33,6 +34,7 @@
     "inquirer": "7.3.3",
     "inquirer-directory": "2.2.0",
     "jest-styled-components": "7.0.8",
+    "json-server": "0.17.0",
     "lint-staged": "12.1.7",
     "node-plop": "0.26.2",
     "plop": "2.7.4",
@@ -74,7 +76,9 @@
     "lint:fix": "yarn run eslint --fix src",
     "lint:css": "stylelint src/**/*.css",
     "prettify": "prettier --write",
-    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js"
+    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
+    "json-server": "json-server --watch json-server/db.json --port 3001",
+    "dev-server": "npx concurrently \"npm run json-server\""
   },
   "eslintConfig": {
     "extends": "react-app"

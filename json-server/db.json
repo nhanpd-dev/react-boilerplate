@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "dainhanphan.dev@yopmail.com",
+      "password": "12345678q",
+      "name": "Dai Nhan Phan",
+      "birthday": "12/01/1990"
+    }
+  ]
+}
